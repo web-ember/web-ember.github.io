@@ -70,6 +70,11 @@
       overflow-x: hidden;
     }
 
+    body.intro-active {
+      overflow: hidden;
+      height: 100dvh;
+    }
+
     body.dark {
       --cream: #101725;
       --cream-2: #172335;
@@ -207,13 +212,15 @@
       z-index: 5000;
       display: grid;
       place-items: center;
-      padding: 22px;
+      padding: clamp(14px, 3vw, 24px);
       background:
         radial-gradient(circle at 20% 14%, rgba(244,182,166,0.46), transparent 30%),
         radial-gradient(circle at 80% 12%, rgba(246,215,176,0.42), transparent 30%),
         radial-gradient(circle at 50% 84%, rgba(159,185,168,0.26), transparent 36%),
         linear-gradient(135deg, #fff8ef 0%, #f8eadb 46%, #fff4ec 100%);
       overflow: hidden;
+      height: 100dvh;
+      max-height: 100dvh;
       transition: opacity 0.9s ease, visibility 0.9s ease, transform 0.9s ease;
     }
 
@@ -280,7 +287,8 @@
 
     .intro-card {
       width: min(880px, 100%);
-      min-height: min(690px, calc(100svh - 44px));
+      height: min(650px, calc(100dvh - 44px));
+      min-height: 0;
       position: relative;
       z-index: 2;
       display: grid;
@@ -293,6 +301,18 @@
       box-shadow: 0 34px 120px rgba(23,35,53,0.18);
       padding: clamp(26px, 6vw, 70px);
       overflow: hidden;
+      animation: introCardArrive 1.05s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    @keyframes introCardArrive {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     body.dark .intro-card {
@@ -309,6 +329,33 @@
       pointer-events: none;
     }
 
+    .intro-card::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: conic-gradient(from 0deg, transparent, rgba(244,182,166,0.18), transparent, rgba(246,215,176,0.16), transparent);
+      animation: introAurora 12s linear infinite;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    @keyframes introAurora {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 3;
+      transform: translateY(0);
+      animation: introContentFloat 4.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes introContentFloat {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+
     .intro-float {
       position: absolute;
       border-radius: 24px;
@@ -317,6 +364,7 @@
       box-shadow: 0 18px 50px rgba(23,35,53,0.10);
       backdrop-filter: blur(16px);
       animation: introFloat 6s ease-in-out infinite alternate;
+      z-index: 2;
     }
 
     body.dark .intro-float {
@@ -365,6 +413,35 @@
       to { translate: 0 -18px; }
     }
 
+    .intro-sparkles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--rose);
+      opacity: 0.55;
+      animation: sparkleRise 7s ease-in-out infinite;
+    }
+
+    .sparkle:nth-child(1) { left: 18%; top: 76%; animation-delay: -1s; }
+    .sparkle:nth-child(2) { left: 31%; top: 22%; animation-delay: -3s; width: 6px; height: 6px; }
+    .sparkle:nth-child(3) { left: 72%; top: 70%; animation-delay: -5s; }
+    .sparkle:nth-child(4) { left: 84%; top: 30%; animation-delay: -2s; width: 5px; height: 5px; }
+    .sparkle:nth-child(5) { left: 12%; top: 38%; animation-delay: -4s; width: 5px; height: 5px; }
+
+    @keyframes sparkleRise {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.2; }
+      45% { transform: translateY(-28px) scale(1.4); opacity: 0.65; }
+    }
+
     .intro-mark {
       width: 92px;
       height: 92px;
@@ -375,6 +452,12 @@
       margin: 0 auto 28px;
       box-shadow: 0 22px 60px rgba(23,35,53,0.24);
       position: relative;
+      animation: introMarkPulse 3.2s ease-in-out infinite;
+    }
+
+    @keyframes introMarkPulse {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-4px) scale(1.035); }
     }
 
     .intro-mark::before {
@@ -1970,7 +2053,7 @@
       }
 
       .intro-card {
-        min-height: min(650px, calc(100svh - 44px));
+        height: min(620px, calc(100dvh - 36px));
       }
 
       .music-player {
@@ -2106,8 +2189,17 @@
       }
 
       .intro-card {
-        padding: 28px 18px;
+        height: calc(100dvh - 28px);
+        padding: 24px 18px;
         border-radius: 30px;
+      }
+
+      .intro-card::before {
+        inset: 10px;
+      }
+
+      .intro-content {
+        animation: none;
       }
 
       .intro-mark {
@@ -2191,6 +2283,14 @@
       <div class="intro-float two" aria-hidden="true"></div>
       <div class="intro-float three" aria-hidden="true"></div>
       <div>
+        <div class="intro-sparkles" aria-hidden="true">
+          <span class="sparkle"></span>
+          <span class="sparkle"></span>
+          <span class="sparkle"></span>
+          <span class="sparkle"></span>
+          <span class="sparkle"></span>
+        </div>
+        <div class="intro-content">
         <div class="intro-mark" aria-hidden="true"></div>
         <div class="intro-kicker">Welcome to Webember</div>
         <h1 class="intro-title">Dive into the web of memories.</h1>
@@ -2198,6 +2298,7 @@
         <div class="intro-actions">
           <button class="intro-btn" id="enterSiteBtn">Enter the memory world →</button>
           <span class="intro-muted">Music starts after you enter</span>
+        </div>
         </div>
       </div>
     </div>
@@ -2597,6 +2698,8 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    body.classList.add('intro-active');
+
     const savedTheme = localStorage.getItem('webember-theme');
     if (savedTheme === 'dark') {
       body.classList.add('dark');
@@ -2607,6 +2710,7 @@
     if (hasEntered) {
       introGate.classList.add('hidden');
       musicPlayer.classList.add('show');
+      body.classList.remove('intro-active');
     }
 
     siteMusic.volume = 0.34;
@@ -2614,6 +2718,7 @@
     async function startMemoryWorld() {
       sessionStorage.setItem('webember-entered', 'true');
       introGate.classList.add('hidden');
+      body.classList.remove('intro-active');
       musicPlayer.classList.add('show');
 
       try {
