@@ -1,0 +1,2018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Webember turns your moments into beautiful, lasting digital stories. Personal websites for weddings, graduations, memorials, birthdays, anniversaries, and more." />
+  <meta name="keywords" content="Webember, personal websites, wedding website, graduation website, memorial website, birthday website, digital memories, Dhrumil Rana" />
+  <meta name="author" content="Dhrumil Rana" />
+
+  <meta property="og:title" content="Webember | Where every memory finds a home on the web" />
+  <meta property="og:description" content="We turn your moments into beautiful, lasting digital stories." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" />
+
+  <title>Webember | Where Every Memory Finds a Home</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fff8ef;
+      --cream-2: #f8ebdc;
+      --navy: #172335;
+      --navy-soft: #25344c;
+      --blush: #f4b6a6;
+      --rose: #d98780;
+      --champagne: #f6d7b0;
+      --sage: #9fb9a8;
+      --ink: #172335;
+      --muted: #6f7480;
+      --white: #ffffff;
+      --glass: rgba(255, 255, 255, 0.58);
+      --border: rgba(23, 35, 53, 0.12);
+      --shadow: 0 24px 80px rgba(23, 35, 53, 0.16);
+      --shadow-soft: 0 16px 45px rgba(23, 35, 53, 0.10);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 10%, rgba(244, 182, 166, 0.45), transparent 28%),
+        radial-gradient(circle at 90% 5%, rgba(246, 215, 176, 0.45), transparent 28%),
+        radial-gradient(circle at 50% 50%, rgba(159, 185, 168, 0.20), transparent 36%),
+        linear-gradient(135deg, #fff8ef 0%, #f9eee2 45%, #fff6ef 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body.dark {
+      --cream: #101725;
+      --cream-2: #172335;
+      --navy: #fff8ef;
+      --navy-soft: #f3e7da;
+      --ink: #fff8ef;
+      --muted: #bfc7d5;
+      --white: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.14);
+      --shadow: 0 24px 90px rgba(0, 0, 0, 0.40);
+      --shadow-soft: 0 16px 55px rgba(0, 0, 0, 0.28);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(244, 182, 166, 0.24), transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(246, 215, 176, 0.20), transparent 28%),
+        linear-gradient(135deg, #0b101a 0%, #141d2c 48%, #101725 100%);
+    }
+
+    ::selection {
+      background: var(--blush);
+      color: var(--navy);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.055;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .cursor-glow {
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244, 182, 166, 0.25), transparent 62%);
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity 0.35s ease;
+      mix-blend-mode: multiply;
+    }
+
+    body.dark .cursor-glow {
+      mix-blend-mode: screen;
+      background: radial-gradient(circle, rgba(244, 182, 166, 0.16), transparent 62%);
+    }
+
+    .floating-orbs {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(1px);
+      opacity: 0.6;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+
+    .orb.one {
+      width: 160px;
+      height: 160px;
+      background: linear-gradient(135deg, rgba(244, 182, 166, 0.45), rgba(246, 215, 176, 0.2));
+      left: 8%;
+      top: 22%;
+    }
+
+    .orb.two {
+      width: 110px;
+      height: 110px;
+      background: linear-gradient(135deg, rgba(159, 185, 168, 0.35), rgba(255, 255, 255, 0.1));
+      right: 9%;
+      top: 34%;
+      animation-delay: -4s;
+    }
+
+    .orb.three {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(135deg, rgba(246, 215, 176, 0.45), rgba(244, 182, 166, 0.2));
+      left: 18%;
+      bottom: 16%;
+      animation-delay: -7s;
+    }
+
+    @keyframes floatOrb {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(24px, -38px, 0) scale(1.08); }
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      position: fixed;
+      top: 18px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .nav {
+      width: min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      background: rgba(255, 248, 239, 0.72);
+      backdrop-filter: blur(22px);
+      border-radius: 999px;
+      box-shadow: 0 10px 35px rgba(23, 35, 53, 0.08);
+    }
+
+    body.dark .nav {
+      background: rgba(16, 23, 37, 0.70);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, var(--navy), #31405a);
+      position: relative;
+      box-shadow: 0 12px 28px rgba(23, 35, 53, 0.18);
+      display: grid;
+      place-items: center;
+      color: #fff8ef;
+      overflow: hidden;
+    }
+
+    .brand-mark::before {
+      content: "";
+      width: 19px;
+      height: 19px;
+      border: 2px solid #f6d7b0;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      border-bottom-left-radius: 12px;
+      transform: rotate(45deg);
+      position: absolute;
+      top: 12px;
+      left: 11px;
+    }
+
+    .brand-mark::after {
+      content: "W";
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      transform: translateY(-1px);
+      color: #fff8ef;
+      z-index: 2;
+    }
+
+    .brand span {
+      font-size: 1.08rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--navy);
+      background: rgba(244, 182, 166, 0.15);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn,
+    .cta-small {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--glass);
+      color: var(--ink);
+      cursor: pointer;
+      transition: 0.25s ease;
+      font-weight: 700;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+    }
+
+    .cta-small {
+      padding: 12px 16px;
+      background: var(--navy);
+      color: var(--cream);
+      box-shadow: 0 10px 30px rgba(23, 35, 53, 0.16);
+    }
+
+    .icon-btn:hover,
+    .cta-small:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 0 90px;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(244, 182, 166, 0.16);
+      border: 1px solid rgba(217, 135, 128, 0.20);
+      color: var(--navy-soft);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      background: var(--rose);
+      border-radius: 50%;
+      box-shadow: 0 0 0 7px rgba(217, 135, 128, 0.14);
+      animation: pulse 1.7s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3.35rem, 8vw, 7.8rem);
+      line-height: 0.88;
+      letter-spacing: -0.065em;
+      max-width: 820px;
+      color: var(--navy);
+    }
+
+    .gradient-word {
+      display: inline-block;
+      background: linear-gradient(115deg, var(--navy) 5%, var(--rose) 52%, #ad746a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.03rem, 2vw, 1.26rem);
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 28px 0 30px;
+    }
+
+    .hero-subtitle strong {
+      color: var(--navy);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      transition: 0.25s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn.primary {
+      color: var(--cream);
+      background: var(--navy);
+      box-shadow: 0 18px 50px rgba(23, 35, 53, 0.22);
+    }
+
+    .btn.secondary {
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      color: var(--ink);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mini-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .proof-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.42);
+      color: var(--muted);
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+    }
+
+    body.dark .proof-pill {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero-stage {
+      min-height: 620px;
+      perspective: 1400px;
+      position: relative;
+    }
+
+    .memory-sphere {
+      position: absolute;
+      inset: 2% 0 0;
+      transform-style: preserve-3d;
+      animation: stageDrift 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes stageDrift {
+      from { transform: rotateX(2deg) rotateY(-8deg) translateY(0); }
+      to { transform: rotateX(-3deg) rotateY(8deg) translateY(-16px); }
+    }
+
+    .main-phone {
+      width: min(360px, 72vw);
+      height: 590px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotateY(-10deg) rotateX(3deg);
+      border-radius: 46px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(255,248,239,0.72));
+      border: 1px solid rgba(23,35,53,0.14);
+      box-shadow: 0 38px 100px rgba(23,35,53,0.22);
+      overflow: hidden;
+      padding: 14px;
+      transform-style: preserve-3d;
+    }
+
+    body.dark .main-phone {
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    }
+
+    .phone-screen {
+      height: 100%;
+      border-radius: 34px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #fff7ef, #f2dfce);
+      position: relative;
+    }
+
+    body.dark .phone-screen {
+      background: linear-gradient(180deg, #182438, #101725);
+    }
+
+    .phone-hero-img {
+      height: 255px;
+      background-image: linear-gradient(to bottom, rgba(23,35,53,0.08), rgba(23,35,53,0.50)), url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=1200&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .phone-pill {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.6);
+    }
+
+    .phone-content {
+      padding: 22px;
+    }
+
+    .script {
+      font-family: "Caveat", cursive;
+      color: var(--rose);
+      font-size: 1.7rem;
+      margin-bottom: 4px;
+    }
+
+    .phone-content h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      letter-spacing: -0.04em;
+      color: #172335;
+    }
+
+    body.dark .phone-content h3 {
+      color: #fff8ef;
+    }
+
+    .phone-content p {
+      margin-top: 10px;
+      color: #6f7480;
+      line-height: 1.65;
+      font-size: 0.93rem;
+    }
+
+    body.dark .phone-content p {
+      color: #c8cfda;
+    }
+
+    .mini-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .mini-gallery span {
+      height: 74px;
+      border-radius: 18px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+    }
+
+    .mini-gallery span:nth-child(1) { background-image: url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=600&auto=format&fit=crop"); }
+    .mini-gallery span:nth-child(2) { background-image: url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop"); }
+    .mini-gallery span:nth-child(3) { background-image: url("https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop"); }
+
+    .floating-card {
+      position: absolute;
+      border-radius: 24px;
+      padding: 16px;
+      background: rgba(255,255,255,0.70);
+      border: 1px solid rgba(23,35,53,0.12);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-soft);
+      transform-style: preserve-3d;
+      animation: cardFloat 5.5s ease-in-out infinite alternate;
+    }
+
+    body.dark .floating-card {
+      background: rgba(255,255,255,0.08);
+    }
+
+    @keyframes cardFloat {
+      from { transform: translateY(0) rotateZ(-2deg); }
+      to { transform: translateY(-18px) rotateZ(2deg); }
+    }
+
+    .card-wedding {
+      width: 210px;
+      left: 0;
+      top: 70px;
+    }
+
+    .card-grad {
+      width: 205px;
+      right: -4px;
+      top: 115px;
+      animation-delay: -2s;
+    }
+
+    .card-memorial {
+      width: 230px;
+      left: 12px;
+      bottom: 84px;
+      animation-delay: -3.5s;
+    }
+
+    .floating-card .label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--navy);
+      font-size: 0.94rem;
+    }
+
+    .floating-card p {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    .heart-chip {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: rgba(244, 182, 166, 0.22);
+      display: grid;
+      place-items: center;
+    }
+
+    .price-tag {
+      position: absolute;
+      right: 24px;
+      bottom: 52px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--cream);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      box-shadow: 0 22px 60px rgba(23,35,53,0.22);
+      animation: spinSoft 14s linear infinite;
+      z-index: 4;
+    }
+
+    .price-tag strong {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: 2.05rem;
+      line-height: 1;
+    }
+
+    .price-tag span {
+      font-size: 0.78rem;
+      opacity: 0.82;
+    }
+
+    @keyframes spinSoft {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    section {
+      padding: 110px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .section-kicker {
+      font-family: "Caveat", cursive;
+      font-size: 2rem;
+      color: var(--rose);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      color: var(--navy);
+      max-width: 780px;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 430px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .service-card {
+      min-height: 300px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.48);
+      backdrop-filter: blur(18px);
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: 0.4s cubic-bezier(.2,.8,.2,1);
+      transform-style: preserve-3d;
+    }
+
+    body.dark .service-card {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px) rotateX(4deg);
+      box-shadow: var(--shadow);
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 10%, rgba(244,182,166,0.32), transparent 34%);
+      opacity: 0;
+      transition: 0.35s ease;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, rgba(244,182,166,0.28), rgba(246,215,176,0.28));
+      display: grid;
+      place-items: center;
+      font-size: 1.75rem;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.58rem;
+      letter-spacing: -0.035em;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-number {
+      position: absolute;
+      right: 18px;
+      bottom: 12px;
+      font-family: "Playfair Display", serif;
+      font-size: 5rem;
+      color: rgba(23,35,53,0.06);
+      z-index: 1;
+    }
+
+    body.dark .service-number {
+      color: rgba(255,255,255,0.08);
+    }
+
+    .showcase {
+      padding-top: 70px;
+    }
+
+    .showcase-wrap {
+      display: grid;
+      grid-template-columns: 0.88fr 1.12fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .story-panel {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.52);
+      backdrop-filter: blur(18px);
+      padding: 30px;
+      box-shadow: var(--shadow-soft);
+      min-height: 560px;
+      position: sticky;
+      top: 110px;
+      overflow: hidden;
+    }
+
+    body.dark .story-panel {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .story-panel::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      right: -120px;
+      bottom: -120px;
+      background: rgba(244,182,166,0.25);
+      filter: blur(10px);
+    }
+
+    .story-panel h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.4rem, 4vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
+    }
+
+    .story-panel p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timeline-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.46);
+      border: 1px solid var(--border);
+    }
+
+    body.dark .timeline-row {
+      background: rgba(255,255,255,0.05);
+    }
+
+    .timeline-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--rose);
+      margin-top: 4px;
+      box-shadow: 0 0 0 7px rgba(217,135,128,0.12);
+      flex: 0 0 auto;
+    }
+
+    .timeline-row strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .timeline-row span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .demo-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .demo-card {
+      min-height: 420px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      transform-style: preserve-3d;
+      transition: 0.45s ease;
+      background: var(--glass);
+    }
+
+    .demo-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: var(--shadow);
+    }
+
+    .demo-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: 0.7s ease;
+    }
+
+    .demo-card:hover .demo-img {
+      transform: scale(1.08);
+    }
+
+    .demo-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(23,35,53,0.08), rgba(23,35,53,0.72));
+    }
+
+    .demo-content {
+      position: absolute;
+      inset: auto 0 0 0;
+      z-index: 2;
+      padding: 28px;
+      color: white;
+    }
+
+    .demo-content .tag {
+      display: inline-flex;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(12px);
+      margin-bottom: 12px;
+      font-weight: 800;
+      font-size: 0.8rem;
+    }
+
+    .demo-content h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.25rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .demo-content p {
+      color: rgba(255,255,255,0.82);
+      max-width: 520px;
+      line-height: 1.65;
+    }
+
+    .demo-img.wedding { background-image: url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1600&auto=format&fit=crop"); }
+    .demo-img.grad { background-image: url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop"); }
+    .demo-img.memorial { background-image: url("https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=1600&auto=format&fit=crop"); }
+    .demo-img.birthday { background-image: url("https://images.unsplash.com/photo-1464349153735-7db50ed83c84?q=80&w=1600&auto=format&fit=crop"); }
+
+    .process {
+      overflow: hidden;
+    }
+
+    .process-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      counter-reset: step;
+    }
+
+    .process-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.48);
+      backdrop-filter: blur(18px);
+      padding: 24px;
+      min-height: 260px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    body.dark .process-card {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .process-card::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      font-family: "Playfair Display", serif;
+      font-size: 4.8rem;
+      color: rgba(217,135,128,0.20);
+      position: absolute;
+      right: 18px;
+      top: 4px;
+      line-height: 1;
+    }
+
+    .process-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.75rem;
+      letter-spacing: -0.04em;
+      margin: 70px 0 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .process-card p {
+      color: var(--muted);
+      line-height: 1.65;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pricing-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.08fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .price-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.52);
+      backdrop-filter: blur(18px);
+      padding: 28px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: 0.35s ease;
+    }
+
+    body.dark .price-card {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .price-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .price-card.featured {
+      background: var(--navy);
+      color: var(--cream);
+      transform: translateY(-18px);
+    }
+
+    .price-card.featured p,
+    .price-card.featured li,
+    .price-card.featured .price-note {
+      color: rgba(255,248,239,0.78);
+    }
+
+    .price-card .badge {
+      display: inline-flex;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(244,182,166,0.18);
+      color: var(--rose);
+      font-weight: 800;
+      font-size: 0.78rem;
+      margin-bottom: 18px;
+    }
+
+    .price-card.featured .badge {
+      background: rgba(255,255,255,0.12);
+      color: var(--champagne);
+    }
+
+    .price-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.1rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 3.4rem;
+      font-weight: 900;
+      letter-spacing: -0.07em;
+      margin: 20px 0 6px;
+    }
+
+    .price small {
+      font-size: 1rem;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+
+    .price-note {
+      color: var(--muted);
+      line-height: 1.55;
+      min-height: 48px;
+    }
+
+    .price-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin: 26px 0;
+    }
+
+    .price-list li {
+      display: flex;
+      gap: 10px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .price-list li::before {
+      content: "✓";
+      color: var(--rose);
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .price-card.featured .price-list li::before {
+      color: var(--champagne);
+    }
+
+    .gallery-strip {
+      margin: 80px 0 0;
+      display: flex;
+      gap: 18px;
+      width: max-content;
+      animation: marquee 32s linear infinite;
+    }
+
+    .gallery-shell {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .memory-tile {
+      width: 250px;
+      height: 330px;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-soft);
+      flex: 0 0 auto;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .memory-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .memory-tile::after {
+      content: attr(data-title);
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.76);
+      backdrop-filter: blur(12px);
+      color: #172335;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .quote-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.52);
+      backdrop-filter: blur(18px);
+      padding: 34px;
+      box-shadow: var(--shadow-soft);
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body.dark .quote-card {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .quote-card::before {
+      content: "“";
+      font-family: "Playfair Display", serif;
+      font-size: 13rem;
+      position: absolute;
+      top: -70px;
+      left: 18px;
+      color: rgba(217,135,128,0.16);
+      line-height: 1;
+    }
+
+    .quote-text {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 4vw, 3.55rem);
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+      position: relative;
+      z-index: 2;
+    }
+
+    .quote-author {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      position: relative;
+      z-index: 2;
+      color: var(--muted);
+    }
+
+    .founder-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: var(--navy);
+      color: var(--cream);
+      padding: 34px;
+      box-shadow: var(--shadow);
+      min-height: 390px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .founder-card::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(244,182,166,0.18);
+      right: -110px;
+      top: -110px;
+    }
+
+    .founder-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.6rem;
+      letter-spacing: -0.05em;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .founder-card p {
+      color: rgba(255,248,239,0.76);
+      line-height: 1.75;
+      position: relative;
+      z-index: 2;
+    }
+
+    .founder-sign {
+      font-family: "Caveat", cursive;
+      color: var(--champagne);
+      font-size: 2.4rem;
+      margin-top: 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact {
+      padding-bottom: 50px;
+    }
+
+    .contact-card {
+      border-radius: 44px;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(244,182,166,0.32), transparent 34%),
+        radial-gradient(circle at 86% 12%, rgba(246,215,176,0.32), transparent 34%),
+        var(--navy);
+      color: var(--cream);
+      padding: clamp(34px, 7vw, 80px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+    }
+
+    .contact-card::after {
+      content: "Webember";
+      position: absolute;
+      right: -30px;
+      bottom: -26px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(5rem, 16vw, 13rem);
+      color: rgba(255,255,255,0.045);
+      letter-spacing: -0.08em;
+      line-height: 0.8;
+    }
+
+    .contact-content {
+      max-width: 760px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-content h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3rem, 7vw, 6.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+      margin-bottom: 24px;
+    }
+
+    .contact-content p {
+      color: rgba(255,248,239,0.76);
+      line-height: 1.75;
+      font-size: 1.1rem;
+      max-width: 610px;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .contact-actions .btn.primary {
+      background: var(--cream);
+      color: #172335;
+    }
+
+    .contact-actions .btn.secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--cream);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .footer {
+      padding: 34px 0 60px;
+      color: var(--muted);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: 0.75s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .showcase-wrap,
+      .testimonials {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 140px;
+      }
+
+      .hero-stage {
+        min-height: 610px;
+      }
+
+      .services-grid,
+      .process-track,
+      .pricing-wrap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .price-card.featured {
+        transform: none;
+      }
+
+      .story-panel {
+        position: relative;
+        top: 0;
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .nav {
+        border-radius: 28px;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 18px;
+        right: 18px;
+        border: 1px solid var(--border);
+        background: rgba(255,248,239,0.92);
+        backdrop-filter: blur(18px);
+        border-radius: 24px;
+        padding: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        box-shadow: var(--shadow-soft);
+      }
+
+      body.dark .nav-links {
+        background: rgba(16, 23, 37, 0.94);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 14px 16px;
+      }
+
+      .mobile-menu-btn {
+        display: grid;
+      }
+
+      .cta-small {
+        display: none;
+      }
+
+      .hero-stage {
+        min-height: 540px;
+      }
+
+      .main-phone {
+        width: min(320px, 84vw);
+        height: 540px;
+      }
+
+      .floating-card {
+        display: none;
+      }
+
+      .price-tag {
+        width: 122px;
+        height: 122px;
+        right: 2px;
+        bottom: 28px;
+      }
+
+      .price-tag strong {
+        font-size: 1.62rem;
+      }
+
+      section {
+        padding: 82px 0;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-copy {
+        margin-top: 18px;
+      }
+
+      .services-grid,
+      .process-track,
+      .pricing-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-card {
+        min-height: 360px;
+      }
+
+      .memory-tile {
+        width: 210px;
+        height: 290px;
+      }
+
+      .contact-card {
+        border-radius: 34px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container,
+      .nav {
+        width: min(100% - 24px, var(--max));
+      }
+
+      h1 {
+        font-size: clamp(3rem, 17vw, 4.5rem);
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .hero-actions,
+      .contact-actions {
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .proof-pill {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .phone-content h3 {
+        font-size: 1.72rem;
+      }
+
+      .mini-gallery span {
+        height: 64px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="floating-orbs" aria-hidden="true">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+  </div>
+
+  <header id="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Webember home">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <span>Webember</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Moments</a>
+        <a href="#showcase">Showcase</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">☾</button>
+        <button class="icon-btn mobile-menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        <a class="cta-small" href="mailto:dhrumilrana25@gmail.com?subject=Webember%20Website%20Request">Start a memory</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="pulse-dot"></span> Personal websites for life’s meaningful moments</div>
+          <h1>Where every <span class="gradient-word">memory</span> finds a home on the web.</h1>
+          <p class="hero-subtitle">
+            <strong>Webember</strong> turns weddings, graduations, memorials, birthdays, anniversaries, and family albums into beautiful, lasting digital stories people can open with one simple link.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#contact">Book your website →</a>
+            <a class="btn secondary" href="#showcase">Explore examples</a>
+          </div>
+
+          <div class="mini-proof" aria-label="Webember highlights">
+            <div class="proof-pill">💎 Starting at $30–$50</div>
+            <div class="proof-pill">📱 Mobile-first design</div>
+            <div class="proof-pill">🕊️ Built with heart by Dhrumil Rana</div>
+          </div>
+        </div>
+
+        <div class="hero-stage reveal" id="heroStage" aria-label="Interactive Webember memory website preview">
+          <div class="memory-sphere" id="memorySphere">
+            <div class="floating-card card-wedding">
+              <div class="label">Wedding Story <span class="heart-chip">💍</span></div>
+              <p>A polished event page with love story, gallery, countdown, and family details.</p>
+            </div>
+
+            <div class="floating-card card-grad">
+              <div class="label">Grad Moment <span class="heart-chip">🎓</span></div>
+              <p>Celebrate the journey with photos, milestones, and emotional messages.</p>
+            </div>
+
+            <div class="floating-card card-memorial">
+              <div class="label">Memorial Tribute <span class="heart-chip">🕯️</span></div>
+              <p>A respectful digital place to remember a loved one and share their story.</p>
+            </div>
+
+            <div class="main-phone">
+              <div class="phone-screen">
+                <div class="phone-hero-img">
+                  <div class="phone-pill"></div>
+                </div>
+                <div class="phone-content">
+                  <div class="script">A little forever place</div>
+                  <h3>Shrivalli’s Graduation Story</h3>
+                  <p>A warm digital keepsake with photos, chapters, music, and a final message from the people who love her most.</p>
+                  <div class="mini-gallery">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="price-tag">
+              <div>
+                <span>starts at</span>
+                <strong>$30</strong>
+                <span>custom memory sites</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">What we turn into stories</div>
+            <h2 class="section-title">Every chapter can become a beautiful website.</h2>
+          </div>
+          <p class="section-copy">From joyful celebrations to deeply personal tributes, Webember builds pages that feel handcrafted, emotional, modern, and easy to share.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-icon">💍</div>
+            <h3>Wedding Websites</h3>
+            <p>Couple story, photos, ceremony details, countdown, travel info, and a romantic digital home for the big day.</p>
+            <div class="service-number">01</div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">🎓</div>
+            <h3>Graduation Pages</h3>
+            <p>A celebration of the journey: achievements, family notes, photo chapters, future dreams, and memories.</p>
+            <div class="service-number">02</div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">🕯️</div>
+            <h3>Memorial Tributes</h3>
+            <p>Respectful tribute websites with life story, photos, messages, and a quiet place for remembrance.</p>
+            <div class="service-number">03</div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">🎂</div>
+            <h3>Birthday Albums</h3>
+            <p>Cute surprise pages with wishes, photos, music, timelines, and a joyful presentation for someone special.</p>
+            <div class="service-number">04</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+      <div class="container showcase-wrap">
+        <aside class="story-panel reveal">
+          <div class="section-kicker">The Webember feel</div>
+          <h2>Not just a page. A place people feel.</h2>
+          <p>Each Webember site is shaped around emotion, story, and simplicity. The goal is not to overwhelm people with tech — it is to make them feel the memory.</p>
+
+          <div class="timeline">
+            <div class="timeline-row">
+              <div class="timeline-dot"></div>
+              <div><strong>Collect the memory</strong><span>Photos, names, notes, event details, and the emotion behind the story.</span></div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-dot"></div>
+              <div><strong>Design the experience</strong><span>Colors, typography, layout, animations, music, and flow are customized to match the moment.</span></div>
+            </div>
+            <div class="timeline-row">
+              <div class="timeline-dot"></div>
+              <div><strong>Share one beautiful link</strong><span>No apps. No confusion. Just a link family and friends can open anytime.</span></div>
+            </div>
+          </div>
+        </aside>
+
+        <div class="demo-grid">
+          <article class="demo-card reveal">
+            <div class="demo-img wedding"></div>
+            <div class="demo-content">
+              <div class="tag">Wedding Demo</div>
+              <h3>Their forever begins here.</h3>
+              <p>A cinematic couple website with story chapters, photo gallery, countdown, and event details.</p>
+            </div>
+          </article>
+
+          <article class="demo-card reveal">
+            <div class="demo-img grad"></div>
+            <div class="demo-content">
+              <div class="tag">Graduation Demo</div>
+              <h3>A journey worth celebrating.</h3>
+              <p>Showcase achievements, family memories, favorite photos, and a message-filled graduation tribute.</p>
+            </div>
+          </article>
+
+          <article class="demo-card reveal">
+            <div class="demo-img memorial"></div>
+            <div class="demo-content">
+              <div class="tag">Memorial Demo</div>
+              <h3>A gentle place to remember.</h3>
+              <p>A respectful page for life stories, photos, candle-like visuals, and messages of remembrance.</p>
+            </div>
+          </article>
+
+          <article class="demo-card reveal">
+            <div class="demo-img birthday"></div>
+            <div class="demo-content">
+              <div class="tag">Birthday Demo</div>
+              <h3>A surprise they can keep.</h3>
+              <p>Playful birthday stories with wishes, photo memories, music, and shareable celebration sections.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="process">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">How it works</div>
+            <h2 class="section-title">From camera roll to timeless web story.</h2>
+          </div>
+          <p class="section-copy">The process is designed for normal people, not tech users. Send the memories, approve the vibe, and receive a beautiful link.</p>
+        </div>
+
+        <div class="process-track">
+          <article class="process-card reveal">
+            <h3>Send details</h3>
+            <p>You send photos, names, event type, preferred colors, and the feeling you want the site to have.</p>
+          </article>
+          <article class="process-card reveal">
+            <h3>We shape story</h3>
+            <p>We organize the moment into sections: hero, timeline, gallery, messages, video, music, or tribute.</p>
+          </article>
+          <article class="process-card reveal">
+            <h3>Design + build</h3>
+            <p>The page is built mobile-first with smooth animations, emotional visuals, and a clean sharing experience.</p>
+          </article>
+          <article class="process-card reveal">
+            <h3>Share forever</h3>
+            <p>You receive one beautiful link that can be shared through Instagram, WhatsApp, text, email, or QR code.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Simple pricing</div>
+            <h2 class="section-title">Beautiful memory websites without scary pricing.</h2>
+          </div>
+          <p class="section-copy">Affordable enough for personal moments, polished enough to feel premium.</p>
+        </div>
+
+        <div class="pricing-wrap">
+          <article class="price-card reveal">
+            <span class="badge">Starter</span>
+            <h3>Memory Page</h3>
+            <div class="price">$30<small>+</small></div>
+            <p class="price-note">Best for a simple one-page memory or event website.</p>
+            <ul class="price-list">
+              <li>One-page website</li>
+              <li>Photo sections</li>
+              <li>Custom colors</li>
+              <li>Mobile responsive</li>
+              <li>Shareable link</li>
+            </ul>
+            <a class="btn secondary" href="mailto:dhrumilrana25@gmail.com?subject=Webember%20Starter%20Website">Choose Starter</a>
+          </article>
+
+          <article class="price-card featured reveal">
+            <span class="badge">Most Popular</span>
+            <h3>Story Website</h3>
+            <div class="price">$50<small>+</small></div>
+            <p class="price-note">Best for graduations, birthdays, weddings, and emotional gift websites.</p>
+            <ul class="price-list">
+              <li>Multiple story sections</li>
+              <li>Premium animations</li>
+              <li>Photo gallery</li>
+              <li>Timeline or chapter flow</li>
+              <li>Music or video section</li>
+              <li>Polished launch-ready design</li>
+            </ul>
+            <a class="btn primary" href="mailto:dhrumilrana25@gmail.com?subject=Webember%20Premium%20Story%20Website">Start Premium</a>
+          </article>
+
+          <article class="price-card reveal">
+            <span class="badge">Custom</span>
+            <h3>Signature Build</h3>
+            <div class="price">Ask</div>
+            <p class="price-note">Best for larger events, custom domains, RSVP, guestbook, or special features.</p>
+            <ul class="price-list">
+              <li>Custom page structure</li>
+              <li>Advanced sections</li>
+              <li>QR code support</li>
+              <li>Custom domain option</li>
+              <li>Special interaction ideas</li>
+            </ul>
+            <a class="btn secondary" href="mailto:dhrumilrana25@gmail.com?subject=Webember%20Custom%20Website">Request Custom</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Memory gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">Made for real emotions</div>
+            <h2 class="section-title">The kind of website people send to family first.</h2>
+          </div>
+          <p class="section-copy">Soft visuals, clean sections, personal writing, and a premium storytelling flow that feels made for the person — not copied from a template.</p>
+        </div>
+      </div>
+
+      <div class="gallery-shell reveal">
+        <div class="gallery-strip">
+          <div class="memory-tile" data-title="Wedding Keepsake"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=900&auto=format&fit=crop" alt="Wedding memory" /></div>
+          <div class="memory-tile" data-title="Graduation Story"><img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=900&auto=format&fit=crop" alt="Graduation memory" /></div>
+          <div class="memory-tile" data-title="Birthday Surprise"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=900&auto=format&fit=crop" alt="Birthday memory" /></div>
+          <div class="memory-tile" data-title="Family Album"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=900&auto=format&fit=crop" alt="Family album" /></div>
+          <div class="memory-tile" data-title="Memorial Tribute"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=900&auto=format&fit=crop" alt="Memorial tribute" /></div>
+          <div class="memory-tile" data-title="Anniversary Page"><img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=900&auto=format&fit=crop" alt="Anniversary memory" /></div>
+          <div class="memory-tile" data-title="Wedding Keepsake"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=900&auto=format&fit=crop" alt="Wedding memory duplicate" /></div>
+          <div class="memory-tile" data-title="Graduation Story"><img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=900&auto=format&fit=crop" alt="Graduation memory duplicate" /></div>
+          <div class="memory-tile" data-title="Birthday Surprise"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=900&auto=format&fit=crop" alt="Birthday memory duplicate" /></div>
+          <div class="memory-tile" data-title="Family Album"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=900&auto=format&fit=crop" alt="Family album duplicate" /></div>
+          <div class="memory-tile" data-title="Memorial Tribute"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=900&auto=format&fit=crop" alt="Memorial tribute duplicate" /></div>
+          <div class="memory-tile" data-title="Anniversary Page"><img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=900&auto=format&fit=crop" alt="Anniversary memory duplicate" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container testimonials">
+        <article class="quote-card reveal">
+          <div class="quote-text">Memories deserve more than storage. They deserve a stage.</div>
+          <div class="quote-author">
+            <span>Webember philosophy</span>
+            <strong>Web + Remember</strong>
+          </div>
+        </article>
+
+        <article class="founder-card reveal">
+          <h3>Founder note</h3>
+          <p>Hi, I’m Dhrumil Rana. I created Webember because I believe personal memories deserve the same care and beauty that businesses put into their websites. A graduation, wedding, birthday, or memorial is not just an event. It is a story worth preserving.</p>
+          <p style="margin-top:14px;">Webember exists to make that story easy to share and impossible to forget.</p>
+          <div class="founder-sign">— Dhrumil Rana</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div class="contact-content">
+            <div class="section-kicker">Ready to make one?</div>
+            <h2>Let’s build a digital home for your memory.</h2>
+            <p>Send the occasion, photos, names, and the feeling you want. I’ll help turn it into a beautiful personal website your family and friends can open with one link.</p>
+            <div class="contact-actions">
+              <a class="btn primary" href="tel:4693451490">Call/Text 4693451490</a>
+              <a class="btn secondary" href="mailto:dhrumilrana25@gmail.com?subject=Webember%20Website%20Request&body=Hi%20Dhrumil%2C%20I%20want%20a%20Webember%20website%20for...">Email Dhrumil</a>
+              <a class="btn secondary" href="#pricing">View pricing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <span>Webember</span>
+      </div>
+      <p>Made with code. Designed with heart. Remembered forever.</p>
+      <p>© <span id="year"></span> Dhrumil Rana</p>
+    </div>
+  </footer>
+
+  <script>
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const cursorGlow = document.getElementById('cursorGlow');
+    const memorySphere = document.getElementById('memorySphere');
+    const heroStage = document.getElementById('heroStage');
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const savedTheme = localStorage.getItem('webember-theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark');
+      themeToggle.textContent = '☀';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const dark = body.classList.contains('dark');
+      localStorage.setItem('webember-theme', dark ? 'dark' : 'light');
+      themeToggle.textContent = dark ? '☀' : '☾';
+    });
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuBtn.textContent = navLinks.classList.contains('open') ? '×' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.textContent = '☰';
+      });
+    });
+
+    window.addEventListener('mousemove', (event) => {
+      const x = event.clientX;
+      const y = event.clientY;
+      cursorGlow.style.left = `${x}px`;
+      cursorGlow.style.top = `${y}px`;
+    });
+
+    if (heroStage && memorySphere) {
+      heroStage.addEventListener('mousemove', (event) => {
+        const rect = heroStage.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        memorySphere.style.transform = `rotateX(${y * -8}deg) rotateY(${x * 14}deg) translateY(-8px)`;
+      });
+
+      heroStage.addEventListener('mouseleave', () => {
+        memorySphere.style.transform = '';
+      });
+    }
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    revealEls.forEach((el, index) => {
+      el.style.transitionDelay = `${Math.min(index * 45, 280)}ms`;
+      observer.observe(el);
+    });
+
+    let lastScroll = 0;
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      const current = window.scrollY;
+      if (current > lastScroll && current > 300) {
+        header.style.transform = 'translateY(-120%)';
+        header.style.opacity = '0';
+      } else {
+        header.style.transform = 'translateY(0)';
+        header.style.opacity = '1';
+      }
+      lastScroll = current;
+    });
+  </script>
+</body>
+</html>
