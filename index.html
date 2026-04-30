@@ -1149,7 +1149,7 @@
       overflow: hidden;
       padding: 14px;
       transform-style: preserve-3d;
-      z-index: 3;
+      z-index: 8;
     }
 
     body.dark .main-phone {
@@ -1243,15 +1243,16 @@
     .floating-card {
       position: absolute;
       border-radius: 24px;
-      padding: 16px;
-      background: rgba(255,255,255,0.74);
+      padding: 15px;
+      background: rgba(255,255,255,0.62);
       border: 1px solid rgba(23,35,53,0.12);
       backdrop-filter: blur(18px);
       box-shadow: var(--shadow-soft);
       transform-style: preserve-3d;
       animation: cardFloat 5.5s ease-in-out infinite alternate;
       z-index: 4;
-      max-width: calc(50% - 24px);
+      max-width: 190px;
+      pointer-events: none;
     }
 
     body.dark .floating-card {
@@ -1264,22 +1265,22 @@
     }
 
     .card-wedding {
-      width: 214px;
+      width: 188px;
       left: 0;
-      top: 58px;
+      top: 52px;
     }
 
     .card-grad {
-      width: 210px;
+      width: 184px;
       right: 0;
-      top: 118px;
+      top: 138px;
       animation-delay: -2s;
     }
 
     .card-memorial {
-      width: 232px;
-      left: 4px;
-      bottom: 76px;
+      width: 198px;
+      left: 8px;
+      bottom: 74px;
       animation-delay: -3.5s;
     }
 
@@ -1291,13 +1292,13 @@
       font-weight: 900;
       margin-bottom: 8px;
       color: var(--navy);
-      font-size: 0.94rem;
+      font-size: 0.86rem;
     }
 
     .floating-card p {
       color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.52;
+      font-size: 0.76rem;
+      line-height: 1.46;
     }
 
     .heart-chip {
@@ -1314,8 +1315,8 @@
       position: absolute;
       right: 22px;
       bottom: 42px;
-      width: 148px;
-      height: 148px;
+      width: 132px;
+      height: 132px;
       border-radius: 50%;
       background: var(--navy);
       color: var(--cream);
@@ -1324,7 +1325,8 @@
       text-align: center;
       box-shadow: 0 22px 60px rgba(23,35,53,0.22);
       animation: spinSoft 14s linear infinite;
-      z-index: 5;
+      z-index: 3;
+      pointer-events: none;
     }
 
     .price-tag strong {
@@ -1743,15 +1745,22 @@
     }
 
     .price-card.featured {
-      background: var(--navy);
-      color: var(--cream);
+      background: linear-gradient(145deg, #fff8ef, #f2dfce);
+      color: #172335;
       transform: translateY(-18px);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    body.dark .price-card.featured {
+      background: linear-gradient(145deg, rgba(255,248,239,0.96), rgba(246,215,176,0.88));
+      color: #172335;
+      box-shadow: 0 28px 95px rgba(0,0,0,0.42);
     }
 
     .price-card.featured p,
     .price-card.featured li,
     .price-card.featured .price-note {
-      color: rgba(255,248,239,0.80);
+      color: rgba(23,35,53,0.72);
     }
 
     .price-card .badge {
@@ -1767,8 +1776,8 @@
     }
 
     .price-card.featured .badge {
-      background: rgba(255,255,255,0.12);
-      color: var(--champagne);
+      background: rgba(23,35,53,0.08);
+      color: #9d5a55;
     }
 
     .price-card h3 {
@@ -1822,7 +1831,13 @@
     }
 
     .price-card.featured .price-list li::before {
-      color: var(--champagne);
+      color: #9d5a55;
+    }
+
+    .price-card.featured .btn.primary {
+      background: #172335;
+      color: #fff8ef;
+      border-color: rgba(23,35,53,0.18);
     }
 
     .gallery-shell {
@@ -2089,6 +2104,64 @@
 
     .mobile-menu-btn {
       display: none;
+    }
+
+    @media (max-width: 1280px) {
+      .floating-card {
+        max-width: 158px;
+        padding: 12px;
+        opacity: 0.72;
+        z-index: 2;
+      }
+
+      .floating-card .label {
+        font-size: 0.76rem;
+      }
+
+      .floating-card p {
+        font-size: 0.68rem;
+      }
+
+      .heart-chip {
+        width: 26px;
+        height: 26px;
+        border-radius: 10px;
+        font-size: 0.82rem;
+      }
+
+      .card-wedding {
+        left: 8px;
+        top: 66px;
+      }
+
+      .card-grad {
+        right: 10px;
+        top: 170px;
+      }
+
+      .card-memorial {
+        left: 12px;
+        bottom: 92px;
+      }
+
+      .price-tag {
+        right: 10px;
+        bottom: 54px;
+        width: 108px;
+        height: 108px;
+        opacity: 0.92;
+      }
+
+      .price-tag strong {
+        font-size: 1.48rem;
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .floating-card,
+      .price-tag {
+        display: none;
+      }
     }
 
     @media (max-width: 1100px) {
@@ -2661,6 +2734,7 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%) !important;
+        z-index: 8;
       }
 
       .phone-screen {
