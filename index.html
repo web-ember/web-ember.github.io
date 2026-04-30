@@ -2552,6 +2552,384 @@
       }
     }
 
+    /* Mobile stability patch: keeps the dark luxury design but prevents layout tearing */
+    @media (max-width: 700px) {
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        background-attachment: scroll;
+      }
+
+      .container,
+      .nav {
+        width: calc(100% - 24px);
+        max-width: calc(100% - 24px);
+      }
+
+      header {
+        top: 10px;
+      }
+
+      .nav {
+        min-height: 62px;
+        padding: 9px 10px;
+        gap: 8px;
+      }
+
+      .brand {
+        min-width: 0;
+        gap: 8px;
+      }
+
+      .brand span {
+        max-width: 132px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .brand-mark {
+        width: 39px;
+        height: 39px;
+        border-radius: 14px;
+      }
+
+      .icon-btn {
+        width: 39px;
+        height: 39px;
+      }
+
+      .nav-links {
+        top: 68px;
+        left: 12px;
+        right: 12px;
+        max-width: calc(100vw - 24px);
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 112px;
+        padding-bottom: 54px;
+      }
+
+      .hero-grid {
+        gap: 28px;
+      }
+
+      .eyebrow {
+        max-width: 100%;
+        white-space: normal;
+        line-height: 1.35;
+      }
+
+      h1,
+      .section-title,
+      .contact-content h2,
+      .intro-title {
+        overflow-wrap: break-word;
+        word-break: normal;
+      }
+
+      h1 {
+        font-size: clamp(2.8rem, 15vw, 4.1rem);
+        letter-spacing: -0.058em;
+      }
+
+      .hero-stage {
+        min-height: 498px;
+        width: 100%;
+        overflow: visible;
+      }
+
+      .main-phone {
+        width: min(286px, 82vw);
+        height: 492px;
+        padding: 11px;
+        border-radius: 36px;
+      }
+
+      .phone-screen {
+        border-radius: 27px;
+      }
+
+      .phone-hero-img {
+        height: 205px;
+      }
+
+      .phone-content {
+        padding: 17px;
+      }
+
+      .script {
+        font-size: 1.45rem;
+      }
+
+      .phone-content h3 {
+        font-size: 1.48rem;
+      }
+
+      .phone-content p {
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+
+      .mini-gallery {
+        gap: 6px;
+        margin-top: 13px;
+      }
+
+      .mini-gallery span {
+        height: 52px;
+        border-radius: 14px;
+      }
+
+      section {
+        padding: 72px 0;
+        overflow-x: clip;
+      }
+
+      .section-head {
+        gap: 14px;
+        margin-bottom: 26px;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 10vw, 3.05rem);
+        letter-spacing: -0.048em;
+      }
+
+      .section-copy,
+      .hero-subtitle,
+      .contact-content p {
+        font-size: 0.96rem;
+        line-height: 1.62;
+      }
+
+      .services-grid,
+      .process-track,
+      .pricing-wrap,
+      .testimonials,
+      .showcase-wrap,
+      .demo-grid {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .service-card,
+      .process-card,
+      .price-card,
+      .quote-card,
+      .founder-card,
+      .story-panel {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      .demo-card {
+        min-height: 330px;
+        border-radius: 26px;
+      }
+
+      .demo-content {
+        padding: 20px;
+      }
+
+      .demo-content h3 {
+        font-size: 1.72rem;
+      }
+
+      .demo-content p {
+        font-size: 0.91rem;
+      }
+
+      .process-card {
+        min-height: 226px;
+      }
+
+      .process-card h3 {
+        margin-top: 58px;
+      }
+
+      .price-card.featured {
+        transform: none;
+      }
+
+      .price {
+        font-size: 3rem;
+      }
+
+      .gallery-shell {
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(50% - 50vw);
+        mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+      }
+
+      .gallery-strip {
+        gap: 12px;
+        padding-left: 12px;
+      }
+
+      .memory-tile {
+        width: 184px;
+        height: 258px;
+        border-radius: 24px;
+      }
+
+      .memory-tile::after {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 10px;
+        font-size: 0.78rem;
+      }
+
+      .quote-card,
+      .founder-card {
+        min-height: auto;
+      }
+
+      .quote-card::before {
+        font-size: 9rem;
+        top: -48px;
+      }
+
+      .quote-text {
+        font-size: clamp(1.85rem, 9vw, 2.55rem);
+      }
+
+      .founder-card h3 {
+        font-size: 2.12rem;
+      }
+
+      .contact-card {
+        min-height: auto;
+        padding: 30px 20px;
+        border-radius: 28px;
+      }
+
+      .contact-card::after {
+        right: -18px;
+        bottom: -10px;
+        font-size: 4.4rem;
+      }
+
+      .contact-content h2 {
+        font-size: clamp(2.45rem, 12vw, 3.8rem);
+        letter-spacing: -0.055em;
+      }
+
+      .music-player {
+        width: calc(100% - 24px);
+        max-width: calc(100% - 24px);
+        left: 12px;
+        right: 12px;
+        bottom: max(12px, env(safe-area-inset-bottom));
+        justify-content: flex-start;
+      }
+
+      .music-meta strong,
+      .music-meta span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .footer {
+        padding-bottom: 84px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .intro-card {
+        max-height: calc(100svh - 18px);
+        min-height: min(520px, calc(100svh - 18px));
+        padding: 18px 14px;
+      }
+
+      .intro-world-label {
+        font-size: 0.62rem;
+        letter-spacing: 0.09em;
+      }
+
+      .intro-title {
+        font-size: clamp(2.35rem, 12vw, 3.35rem);
+      }
+
+      .intro-title .soft-script {
+        font-size: clamp(1.65rem, 9vw, 2.45rem);
+      }
+
+      .intro-copy {
+        font-size: 0.88rem;
+        line-height: 1.42;
+      }
+
+      .intro-sound-note {
+        display: none;
+      }
+
+      .intro-btn,
+      .intro-muted {
+        min-height: 48px;
+        padding: 0 16px;
+      }
+
+      .hero-stage {
+        min-height: 470px;
+      }
+
+      .main-phone {
+        width: min(272px, 84vw);
+        height: 470px;
+      }
+
+      .phone-hero-img {
+        height: 190px;
+      }
+
+      .phone-content h3 {
+        font-size: 1.38rem;
+      }
+
+      .mini-gallery span {
+        height: 47px;
+      }
+
+      .btn {
+        min-height: 50px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .brand span {
+        max-width: 104px;
+      }
+
+      .main-phone {
+        width: min(252px, 86vw);
+        height: 450px;
+      }
+
+      .phone-hero-img {
+        height: 178px;
+      }
+
+      .mini-gallery span {
+        height: 42px;
+      }
+
+      .memory-tile {
+        width: 166px;
+        height: 238px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -2605,8 +2983,10 @@
     </div>
   </div>
 
-  <audio id="siteMusic" loop preload="auto">
+  <audio id="siteMusic" loop preload="metadata" playsinline>
+    <source src="./assets/webember-music.mp3" type="audio/mpeg" />
     <source src="assets/webember-music.mp3" type="audio/mpeg" />
+    <source src="./assets/webember-music.ogg" type="audio/ogg" />
   </audio>
 
   <div class="music-player" id="musicPlayer" aria-label="Music controls">
@@ -3020,11 +3400,14 @@
       musicPlayer.classList.add('show');
 
       try {
+        siteMusic.currentTime = 0;
+        siteMusic.volume = 0.34;
         await siteMusic.play();
         musicToggle.textContent = '❚❚';
         musicStatus.textContent = 'Playing softly';
       } catch (error) {
-        musicToggle.textContent = '♪';
+        console.warn('Webember music could not start:', error);
+        musicToggle.textContent = '▶';
         musicStatus.textContent = 'Tap to play';
       }
     }
@@ -3034,16 +3417,31 @@
     musicToggle.addEventListener('click', async () => {
       if (siteMusic.paused) {
         try {
+          siteMusic.volume = 0.34;
           await siteMusic.play();
           musicToggle.textContent = '❚❚';
           musicStatus.textContent = 'Playing softly';
         } catch (error) {
-          musicStatus.textContent = 'Add music file first';
+          console.warn('Webember music play button failed:', error);
+          musicToggle.textContent = '▶';
+          musicStatus.textContent = 'Music file not found';
         }
       } else {
         siteMusic.pause();
         musicToggle.textContent = '▶';
         musicStatus.textContent = 'Paused';
+      }
+    });
+
+    siteMusic.addEventListener('error', () => {
+      console.warn('Webember audio error. Check file path: assets/webember-music.mp3');
+      musicToggle.textContent = '▶';
+      musicStatus.textContent = 'Music file not found';
+    });
+
+    siteMusic.addEventListener('canplaythrough', () => {
+      if (!siteMusic.paused) {
+        musicStatus.textContent = 'Playing softly';
       }
     });
 
@@ -3116,7 +3514,8 @@
     }, { threshold: 0.16 });
 
     revealEls.forEach((el, index) => {
-      el.style.transitionDelay = `${Math.min(index * 38, 240)}ms`;
+      const delay = window.innerWidth <= 700 ? Math.min(index * 18, 90) : Math.min(index * 38, 240);
+      el.style.transitionDelay = `${delay}ms`;
       observer.observe(el);
     });
 
