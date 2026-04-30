@@ -1896,8 +1896,8 @@
 
     .testimonials {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(310px, 0.9fr);
-      gap: 20px;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
+      gap: 22px;
       align-items: stretch;
     }
 
@@ -1918,8 +1918,13 @@
     }
 
     body.dark .quote-card {
-      background: rgba(255,255,255,0.06);
+      background:
+        radial-gradient(circle at 16% 18%, rgba(244,182,166,0.12), transparent 28%),
+        rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
     }
+
+
 
     .quote-card::before {
       content: "“";
@@ -1955,26 +1960,42 @@
 
     .founder-card {
       border-radius: var(--radius-xl);
-      border: 1px solid var(--border);
-      background: var(--navy);
-      color: var(--cream);
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(circle at 88% 8%, rgba(244,182,166,0.20), transparent 30%),
+        radial-gradient(circle at 18% 82%, rgba(246,215,176,0.12), transparent 34%),
+        linear-gradient(145deg, #172335 0%, #101725 100%);
+      color: #fff8ef;
       padding: 34px;
       box-shadow: var(--shadow);
       min-height: 390px;
       position: relative;
       overflow: hidden;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    body.dark .founder-card {
+      background:
+        radial-gradient(circle at 88% 8%, rgba(244,182,166,0.18), transparent 30%),
+        radial-gradient(circle at 18% 82%, rgba(246,215,176,0.10), transparent 34%),
+        linear-gradient(145deg, #172335 0%, #0b101a 100%);
+      color: #fff8ef;
     }
 
     .founder-card::before {
       content: "";
       position: absolute;
-      width: 280px;
-      height: 280px;
+      width: 260px;
+      height: 260px;
       border-radius: 50%;
-      background: rgba(244,182,166,0.18);
-      right: -110px;
-      top: -110px;
+      background: rgba(244,182,166,0.12);
+      right: -120px;
+      top: -120px;
+      filter: blur(2px);
+      pointer-events: none;
     }
 
     .founder-card h3 {
@@ -1985,18 +2006,24 @@
       position: relative;
       z-index: 2;
       line-height: 1.04;
+      color: #fff8ef;
     }
 
     .founder-card p {
-      color: rgba(255,248,239,0.78);
+      color: rgba(255,248,239,0.80);
       line-height: 1.75;
       position: relative;
       z-index: 2;
+      max-width: 620px;
+    }
+
+    .founder-card p strong {
+      color: #f6d7b0;
     }
 
     .founder-sign {
       font-family: "Caveat", cursive;
-      color: var(--champagne);
+      color: #f6d7b0;
       font-size: 2.4rem;
       margin-top: 28px;
       position: relative;
@@ -3427,9 +3454,11 @@
         </article>
 
         <article class="founder-card reveal">
-          <h3>Founder note</h3>
-          <p>Hi, I’m Dhrumil Rana. I created Webember because I believe personal memories deserve the same care and beauty that businesses put into their websites. A graduation, wedding, birthday, or memorial is not just an event. It is a story worth preserving.</p>
-          <p style="margin-top:14px;">Webember exists to make that story easy to share and impossible to forget.</p>
+          <div>
+            <h3>Founder note</h3>
+            <p>Hi, I’m <strong>Dhrumil Rana</strong>. I created Webember because personal memories deserve the same care and beauty that businesses put into their websites. A graduation, wedding, birthday, or memorial is not just an event. It is a story worth preserving.</p>
+            <p style="margin-top:14px;">Webember exists to make that story easy to share and impossible to forget.</p>
+          </div>
           <div class="founder-sign">— Dhrumil Rana</div>
         </article>
       </div>
