@@ -201,6 +201,335 @@
         linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
     }
 
+    .intro-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background:
+        radial-gradient(circle at 20% 14%, rgba(244,182,166,0.46), transparent 30%),
+        radial-gradient(circle at 80% 12%, rgba(246,215,176,0.42), transparent 30%),
+        radial-gradient(circle at 50% 84%, rgba(159,185,168,0.26), transparent 36%),
+        linear-gradient(135deg, #fff8ef 0%, #f8eadb 46%, #fff4ec 100%);
+      overflow: hidden;
+      transition: opacity 0.9s ease, visibility 0.9s ease, transform 0.9s ease;
+    }
+
+    body.dark .intro-gate {
+      background:
+        radial-gradient(circle at 20% 14%, rgba(244,182,166,0.22), transparent 30%),
+        radial-gradient(circle at 80% 12%, rgba(246,215,176,0.18), transparent 30%),
+        radial-gradient(circle at 50% 84%, rgba(159,185,168,0.16), transparent 36%),
+        linear-gradient(135deg, #0b101a 0%, #141d2c 46%, #101725 100%);
+    }
+
+    .intro-gate.hidden {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.035);
+      pointer-events: none;
+    }
+
+    .intro-gate::before {
+      content: "";
+      position: absolute;
+      width: 820px;
+      height: 820px;
+      border-radius: 50%;
+      border: 1px solid rgba(23,35,53,0.08);
+      box-shadow:
+        0 0 0 60px rgba(255,255,255,0.08),
+        0 0 0 120px rgba(244,182,166,0.08),
+        0 0 0 190px rgba(246,215,176,0.06);
+      animation: introOrbit 14s linear infinite;
+    }
+
+    body.dark .intro-gate::before {
+      border-color: rgba(255,255,255,0.08);
+      box-shadow:
+        0 0 0 60px rgba(255,255,255,0.025),
+        0 0 0 120px rgba(244,182,166,0.045),
+        0 0 0 190px rgba(246,215,176,0.035);
+    }
+
+    .intro-gate::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(23,35,53,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23,35,53,0.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 72%);
+      opacity: 0.55;
+    }
+
+    body.dark .intro-gate::after {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      opacity: 0.32;
+    }
+
+    @keyframes introOrbit {
+      from { transform: rotate(0deg) scale(1); }
+      to { transform: rotate(360deg) scale(1); }
+    }
+
+    .intro-card {
+      width: min(880px, 100%);
+      min-height: min(690px, calc(100svh - 44px));
+      position: relative;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border: 1px solid rgba(23,35,53,0.12);
+      border-radius: clamp(30px, 6vw, 58px);
+      background: rgba(255,255,255,0.54);
+      backdrop-filter: blur(28px);
+      box-shadow: 0 34px 120px rgba(23,35,53,0.18);
+      padding: clamp(26px, 6vw, 70px);
+      overflow: hidden;
+    }
+
+    body.dark .intro-card {
+      background: rgba(255,255,255,0.075);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .intro-card::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: clamp(22px, 5vw, 46px);
+      border: 1px solid rgba(217,135,128,0.18);
+      pointer-events: none;
+    }
+
+    .intro-float {
+      position: absolute;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.48);
+      border: 1px solid rgba(23,35,53,0.10);
+      box-shadow: 0 18px 50px rgba(23,35,53,0.10);
+      backdrop-filter: blur(16px);
+      animation: introFloat 6s ease-in-out infinite alternate;
+    }
+
+    body.dark .intro-float {
+      background: rgba(255,255,255,0.065);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .intro-float.one {
+      width: 118px;
+      height: 150px;
+      left: 38px;
+      top: 68px;
+      transform: rotate(-8deg);
+    }
+
+    .intro-float.two {
+      width: 132px;
+      height: 96px;
+      right: 46px;
+      top: 96px;
+      transform: rotate(8deg);
+      animation-delay: -2s;
+    }
+
+    .intro-float.three {
+      width: 112px;
+      height: 128px;
+      right: 72px;
+      bottom: 62px;
+      transform: rotate(-6deg);
+      animation-delay: -4s;
+    }
+
+    .intro-float::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 18px;
+      background:
+        linear-gradient(to bottom, rgba(23,35,53,0.10), transparent 45%),
+        linear-gradient(135deg, rgba(244,182,166,0.32), rgba(246,215,176,0.24));
+    }
+
+    @keyframes introFloat {
+      from { translate: 0 0; }
+      to { translate: 0 -18px; }
+    }
+
+    .intro-mark {
+      width: 92px;
+      height: 92px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, #172335, #31405a);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 28px;
+      box-shadow: 0 22px 60px rgba(23,35,53,0.24);
+      position: relative;
+    }
+
+    .intro-mark::before {
+      content: "";
+      width: 42px;
+      height: 42px;
+      border: 3px solid #f6d7b0;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      border-bottom-left-radius: 24px;
+      transform: rotate(45deg);
+      position: absolute;
+    }
+
+    .intro-mark::after {
+      content: "W";
+      font-family: "Playfair Display", serif;
+      font-size: 38px;
+      color: #fff8ef;
+      z-index: 2;
+      transform: translateY(-2px);
+    }
+
+    .intro-kicker {
+      font-family: "Caveat", cursive;
+      color: var(--rose);
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      margin-bottom: 8px;
+    }
+
+    .intro-title {
+      font-family: "Playfair Display", serif;
+      color: var(--navy);
+      font-size: clamp(3.1rem, 8vw, 7.1rem);
+      line-height: 0.9;
+      letter-spacing: -0.07em;
+      max-width: 780px;
+      margin: 0 auto 22px;
+      text-wrap: balance;
+    }
+
+    .intro-copy {
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 32px;
+      font-size: clamp(1rem, 1.6vw, 1.16rem);
+      line-height: 1.75;
+    }
+
+    .intro-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .intro-btn {
+      min-height: 58px;
+      padding: 0 26px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--navy);
+      color: var(--cream);
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 20px 60px rgba(23,35,53,0.22);
+      transition: 0.25s ease;
+      font-size: 1rem;
+    }
+
+    .intro-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 26px 76px rgba(23,35,53,0.26);
+    }
+
+    .intro-muted {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.34);
+      color: var(--muted);
+      font-weight: 800;
+      backdrop-filter: blur(12px);
+    }
+
+    body.dark .intro-muted {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .music-player {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 120;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,248,239,0.74);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-soft);
+      color: var(--ink);
+      transform: translateY(110px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.45s ease;
+    }
+
+    body.dark .music-player {
+      background: rgba(16,23,37,0.74);
+    }
+
+    .music-player.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .music-toggle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--navy);
+      color: var(--cream);
+      cursor: pointer;
+      font-weight: 900;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 28px rgba(23,35,53,0.18);
+    }
+
+    .music-meta {
+      display: grid;
+      gap: 2px;
+      padding-right: 6px;
+      min-width: 128px;
+    }
+
+    .music-meta strong {
+      font-size: 0.82rem;
+      line-height: 1;
+    }
+
+    .music-meta span {
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+
     @keyframes floatOrb {
       from { transform: translate3d(0, 0, 0) scale(1); }
       to { transform: translate3d(24px, -38px, 0) scale(1.08); }
@@ -1635,6 +1964,21 @@
       .contact-card {
         border-radius: 34px;
       }
+
+      .intro-float {
+        display: none;
+      }
+
+      .intro-card {
+        min-height: min(650px, calc(100svh - 44px));
+      }
+
+      .music-player {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        justify-content: center;
+      }
     }
 
     @media (max-width: 560px) {
@@ -1756,6 +2100,48 @@
         justify-content: center;
         text-align: center;
       }
+
+      .intro-gate {
+        padding: 14px;
+      }
+
+      .intro-card {
+        padding: 28px 18px;
+        border-radius: 30px;
+      }
+
+      .intro-mark {
+        width: 76px;
+        height: 76px;
+        border-radius: 26px;
+        margin-bottom: 22px;
+      }
+
+      .intro-mark::before {
+        width: 34px;
+        height: 34px;
+      }
+
+      .intro-mark::after {
+        font-size: 32px;
+      }
+
+      .intro-title {
+        font-size: clamp(2.8rem, 14vw, 4.4rem);
+      }
+
+      .intro-actions {
+        align-items: stretch;
+      }
+
+      .intro-btn,
+      .intro-muted {
+        width: 100%;
+      }
+
+      .music-meta {
+        min-width: 0;
+      }
     }
 
     @media (max-width: 380px) {
@@ -1797,6 +2183,36 @@
     <div class="orb one"></div>
     <div class="orb two"></div>
     <div class="orb three"></div>
+  </div>
+
+  <div class="intro-gate" id="introGate" aria-label="Enter Webember experience">
+    <div class="intro-card">
+      <div class="intro-float one" aria-hidden="true"></div>
+      <div class="intro-float two" aria-hidden="true"></div>
+      <div class="intro-float three" aria-hidden="true"></div>
+      <div>
+        <div class="intro-mark" aria-hidden="true"></div>
+        <div class="intro-kicker">Welcome to Webember</div>
+        <h1 class="intro-title">Dive into the web of memories.</h1>
+        <p class="intro-copy">Step inside a world where weddings, graduations, birthdays, memorials, and life’s sweetest moments become beautiful digital stories.</p>
+        <div class="intro-actions">
+          <button class="intro-btn" id="enterSiteBtn">Enter the memory world →</button>
+          <span class="intro-muted">Music starts after you enter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="siteMusic" loop preload="auto">
+    <source src="assets/webember-music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="music-player" id="musicPlayer" aria-label="Music controls">
+    <button class="music-toggle" id="musicToggle" aria-label="Pause music">❚❚</button>
+    <div class="music-meta">
+      <strong>Webember ambience</strong>
+      <span id="musicStatus">Playing softly</span>
+    </div>
   </div>
 
   <header id="header">
@@ -2172,6 +2588,12 @@
     const cursorGlow = document.getElementById('cursorGlow');
     const memorySphere = document.getElementById('memorySphere');
     const heroStage = document.getElementById('heroStage');
+    const introGate = document.getElementById('introGate');
+    const enterSiteBtn = document.getElementById('enterSiteBtn');
+    const siteMusic = document.getElementById('siteMusic');
+    const musicPlayer = document.getElementById('musicPlayer');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicStatus = document.getElementById('musicStatus');
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -2180,6 +2602,47 @@
       body.classList.add('dark');
       themeToggle.textContent = '☀';
     }
+
+    let hasEntered = sessionStorage.getItem('webember-entered') === 'true';
+    if (hasEntered) {
+      introGate.classList.add('hidden');
+      musicPlayer.classList.add('show');
+    }
+
+    siteMusic.volume = 0.34;
+
+    async function startMemoryWorld() {
+      sessionStorage.setItem('webember-entered', 'true');
+      introGate.classList.add('hidden');
+      musicPlayer.classList.add('show');
+
+      try {
+        await siteMusic.play();
+        musicToggle.textContent = '❚❚';
+        musicStatus.textContent = 'Playing softly';
+      } catch (error) {
+        musicToggle.textContent = '♪';
+        musicStatus.textContent = 'Tap to play';
+      }
+    }
+
+    enterSiteBtn.addEventListener('click', startMemoryWorld);
+
+    musicToggle.addEventListener('click', async () => {
+      if (siteMusic.paused) {
+        try {
+          await siteMusic.play();
+          musicToggle.textContent = '❚❚';
+          musicStatus.textContent = 'Playing softly';
+        } catch (error) {
+          musicStatus.textContent = 'Add music file first';
+        }
+      } else {
+        siteMusic.pause();
+        musicToggle.textContent = '▶';
+        musicStatus.textContent = 'Paused';
+      }
+    });
 
     themeToggle.addEventListener('click', () => {
       body.classList.toggle('dark');
