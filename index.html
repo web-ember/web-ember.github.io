@@ -74,7 +74,8 @@
 
     body.intro-active {
       overflow: hidden;
-      height: 100dvh;
+      height: 100svh;
+      touch-action: none;
     }
 
     body.dark {
@@ -221,8 +222,8 @@
         radial-gradient(circle at 50% 84%, rgba(159,185,168,0.26), transparent 36%),
         linear-gradient(135deg, #fff8ef 0%, #f8eadb 46%, #fff4ec 100%);
       overflow: hidden;
-      height: 100dvh;
-      max-height: 100dvh;
+      height: 100svh;
+      max-height: 100svh;
       transition: opacity 0.9s ease, visibility 0.9s ease, transform 0.9s ease;
     }
 
@@ -290,8 +291,8 @@
     .intro-card {
       width: min(920px, 100%);
       height: auto;
-      max-height: calc(100dvh - 32px);
-      min-height: min(560px, calc(100dvh - 32px));
+      max-height: calc(100svh - 32px);
+      min-height: min(560px, calc(100svh - 32px));
       position: relative;
       z-index: 2;
       display: grid;
@@ -2142,7 +2143,7 @@
 
     @media (max-height: 760px) {
       .intro-card {
-        max-height: calc(100dvh - 24px);
+        max-height: calc(100svh - 24px);
         min-height: 0;
         padding: 20px 28px;
       }
@@ -2195,6 +2196,50 @@
     }
 
     @media (max-width: 830px) {
+      .cursor-glow {
+        display: none;
+      }
+
+      .orb {
+        animation: none;
+        opacity: 0.28;
+        filter: blur(8px);
+      }
+
+      .grid-glow {
+        opacity: 0.12;
+      }
+
+      .intro-card::after {
+        animation-duration: 28s;
+        opacity: 0.42;
+      }
+
+      .sparkle {
+        animation: none;
+        opacity: 0.22;
+      }
+
+      .intro-content,
+      .intro-mark,
+      .memory-sphere,
+      .gallery-strip {
+        animation-play-state: paused;
+      }
+
+      .main-phone,
+      .demo-card,
+      .service-card,
+      .price-card {
+        transform: none !important;
+      }
+
+      .demo-card:hover,
+      .service-card:hover,
+      .price-card:hover {
+        transform: none !important;
+      }
+
       html {
         scroll-padding-top: 96px;
       }
@@ -2300,8 +2345,8 @@
 
       .intro-card {
         height: auto;
-        max-height: calc(100dvh - 28px);
-        min-height: min(560px, calc(100dvh - 28px));
+        max-height: calc(100svh - 28px);
+        min-height: min(560px, calc(100svh - 28px));
       }
 
       .music-player {
@@ -2438,8 +2483,8 @@
 
       .intro-card {
         height: auto;
-        max-height: calc(100dvh - 24px);
-        min-height: min(540px, calc(100dvh - 24px));
+        max-height: calc(100svh - 24px);
+        min-height: min(540px, calc(100svh - 24px));
         padding: 22px 16px;
         border-radius: 30px;
       }
@@ -2517,7 +2562,7 @@
     }
   </style>
 </head>
-<body>
+<body class="dark intro-active">
   <div class="noise"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
   <div class="background-mesh" aria-hidden="true">
@@ -2957,7 +3002,10 @@
     body.classList.add('intro-active');
 
     const savedTheme = localStorage.getItem('webember-theme');
-    if (savedTheme === 'dark') {
+    if (savedTheme === 'light') {
+      body.classList.remove('dark');
+      themeToggle.textContent = '☾';
+    } else {
       body.classList.add('dark');
       themeToggle.textContent = '☀';
     }
@@ -3018,24 +3066,30 @@
       });
     });
 
-    let glowX = window.innerWidth / 2;
-    let glowY = window.innerHeight / 2;
-    let targetX = glowX;
-    let targetY = glowY;
+    const canUseFinePointer = window.matchMedia('(pointer: fine)').matches && window.innerWidth > 830;
 
-    window.addEventListener('mousemove', (event) => {
-      targetX = event.clientX;
-      targetY = event.clientY;
-    });
+    if (canUseFinePointer) {
+      let glowX = window.innerWidth / 2;
+      let glowY = window.innerHeight / 2;
+      let targetX = glowX;
+      let targetY = glowY;
 
-    function animateGlow() {
-      glowX += (targetX - glowX) * 0.11;
-      glowY += (targetY - glowY) * 0.11;
-      cursorGlow.style.left = `${glowX}px`;
-      cursorGlow.style.top = `${glowY}px`;
-      requestAnimationFrame(animateGlow);
+      window.addEventListener('mousemove', (event) => {
+        targetX = event.clientX;
+        targetY = event.clientY;
+      }, { passive: true });
+
+      function animateGlow() {
+        glowX += (targetX - glowX) * 0.11;
+        glowY += (targetY - glowY) * 0.11;
+        cursorGlow.style.left = `${glowX}px`;
+        cursorGlow.style.top = `${glowY}px`;
+        requestAnimationFrame(animateGlow);
+      }
+      animateGlow();
+    } else {
+      cursorGlow.style.display = 'none';
     }
-    animateGlow();
 
     if (heroStage && memorySphere) {
       heroStage.addEventListener('mousemove', (event) => {
@@ -3069,6 +3123,12 @@
     let lastScroll = 0;
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
+      if (window.innerWidth <= 830) {
+        header.style.transform = 'translateY(0)';
+        header.style.opacity = '1';
+        return;
+      }
+
       const current = window.scrollY;
       if (current > lastScroll && current > 320) {
         header.style.transform = 'translateY(-120%)';
@@ -3078,7 +3138,7 @@
         header.style.opacity = '1';
       }
       lastScroll = Math.max(current, 0);
-    });
+    }, { passive: true });
   </script>
 </body>
 </html>
